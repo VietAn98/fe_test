@@ -1,0 +1,160 @@
+@import "../../styles/styles.scss";
+
+@mixin common-style {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 30px;
+  font-weight: 500;
+  z-index: 10;
+  user-select: none;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+}
+
+.calculator-container {
+  margin: auto;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  background-color: $background--color;
+  border-radius: 20px;
+
+  .result-container {
+    background-color: transparent;
+    width: 100%;
+    height: 200px;
+  }
+
+  .parent {
+    display: grid;
+    grid-template-columns: repeat(4, 80px) 0;
+    grid-template-rows: repeat(5, 60px);
+    grid-column-gap: 2px;
+    grid-row-gap: 2px;
+    background-color: transparent;
+    padding-left: 2px;
+    padding-bottom: 2px;
+
+    .div1 {
+      grid-area: 5 / 1 / 6 / 3;
+      background-color: $primary--color-2;
+      border-bottom-left-radius: 20px;
+      @include common-style;
+    }
+    .div2 {
+      grid-area: 4 / 1 / 5 / 2;
+      background-color: $primary--color-2;
+      @include common-style;
+    }
+    .div3 {
+      grid-area: 4 / 2 / 5 / 3;
+      background-color: $primary--color-2;
+      @include common-style;
+    }
+    .div4 {
+      grid-area: 4 / 3 / 5 / 4;
+      background-color: $primary--color-2;
+      @include common-style;
+    }
+    .div5 {
+      grid-area: 3 / 1 / 4 / 2;
+      background-color: $primary--color-2;
+      @include common-style;
+    }
+    .div6 {
+      grid-area: 3 / 2 / 4 / 3;
+      background-color: $primary--color-2;
+      @include common-style;
+    }
+    .div7 {
+      background-color: $primary--color-2;
+      @include common-style;
+      grid-area: 3 / 3 / 4 / 4;
+    }
+    .div8 {
+      grid-area: 2 / 1 / 3 / 2;
+      background-color: $primary--color-2;
+      @include common-style;
+    }
+    .div9 {
+      grid-area: 2 / 2 / 3 / 3;
+      background-color: $primary--color-2;
+      @include common-style;
+    }
+    .div10 {
+      grid-area: 2 / 3 / 3 / 4;
+      background-color: $primary--color-2;
+      @include common-style;
+    }
+    .div11 {
+      grid-area: 5 / 3 / 6 / 4;
+      background-color: $primary--color-2;
+      @include common-style;
+    }
+    .div12 {
+      grid-area: 5 / 4 / 6 / 5;
+      border-bottom-right-radius: 20px;
+      background-color: $primary--color-3;
+      @include common-style;
+    }
+    .div13 {
+      grid-area: 4 / 4 / 5 / 5;
+      background-color: $primary--color-3;
+      @include common-style;
+    }
+    .div14 {
+      grid-area: 3 / 4 / 4 / 5;
+      @include common-style;
+      background-color: $primary--color-3;
+    }
+    .div15 {
+      grid-area: 2 / 4 / 3 / 5;
+      background-color: $primary--color-3;
+      @include common-style;
+    }
+    .div16 {
+      grid-area: 1 / 4 / 2 / 5;
+      background-color: $primary--color-3;
+      @include common-style;
+    }
+    .div17 {
+      grid-area: 1 / 3 / 2 / 4;
+      @include common-style;
+      background-color: $primary--color-1;
+    }
+    .div18 {
+      grid-area: 1 / 2 / 2 / 3;
+      background-color: $primary--color-1;
+      @include common-style;
+    }
+    .div19 {
+      grid-area: 1 / 1 / 2 / 2;
+      background-color: $primary--color-1;
+      @include common-style;
+    }
+  }
+
+  .three-dots {
+    display: flex;
+    gap: 10px;
+    margin: 15px;
+    .dots {
+      width: 20px;
+      height: 20px;
+      border-radius: 100%;
+      &.red {
+        background-color: #fc625e;
+      }
+      &.yellow {
+        background-color: #fcbb40;
+      }
+      &.green {
+        background-color: #34c548;
+      }
+    }
+  }
+}
