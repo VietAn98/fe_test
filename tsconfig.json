@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "./dist/",
     "noImplicitAny": false,
-    // "module": "es6",
+    "module": "es6",
     "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
@@ -10,12 +10,11 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "declaration": false,
-    "module": "esnext", // add this line
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2018", "dom"]
+    // "target": "es2015",
+    "typeRoots": ["node_modules/@types"]
+    // "lib": ["es2018", "dom"]
   }
 }
