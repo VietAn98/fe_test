@@ -11,6 +11,7 @@ module.exports = {
   devServer: {
     hot: "only",
     port: 3000,
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -28,6 +29,31 @@ module.exports = {
         test: /\.tsx?$/,
         use: "ts-loader",
         exclude: /node_modules/,
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        exclude: /node_modules/,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.tsx?$/,
+        use: {
+          loader: "esbuild-loader",
+          options: {
+            loader: "tsx",
+            target: "esnext",
+          },
+        },
+      },
+      {
+        test: /\.jsx?$/,
+        use: {
+          loader: "esbuild-loader",
+          options: {
+            loader: "jsx",
+            target: "esnext",
+          },
+        },
       },
     ],
   },
