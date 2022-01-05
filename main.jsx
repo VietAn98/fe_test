@@ -8,7 +8,7 @@ ReactDOM.render(
   <BrowserRouter>
     <App />
   </BrowserRouter>,
-  document.getElementById("root")
+  document.getElementById("app")
 );
 
 serviceWorker.unregister();

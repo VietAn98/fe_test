@@ -1,0 +1,14 @@
+$primary--color: #2f69ff;
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.align-items-center {
+  display: flex;
+  align-items: center;
+}
+.justify-space-between {
+  display: flex;
+  justify-content: space-between;
+}
