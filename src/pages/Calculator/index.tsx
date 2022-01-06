@@ -53,6 +53,27 @@ export default function Calculator() {
       setResult("0");
       setSmallCalculation("");
       setSaveNumbers("");
+    } else {
+      if (!isNaN(parseInt(item)) || item === ",") {
+        saveStr = saveNumbers.concat("", item);
+        setResult(saveStr);
+        setSaveNumbers(saveStr);
+        setSmallCalculation(smallCalculation.concat("", item));
+      } else {
+        if (item !== "AC" && item !== "C") {
+          if (isNaN(parseInt(lastChar))) {
+            const tmp = smallCalculation;
+            saveStr = tmp.replace(lastChar, item);
+            if (isNaN(parseInt(firstChar))) {
+              saveStr = smallCalculation.slice(0, 1) + "0 " + item + " ";
+            }
+          } else {
+            saveStr = smallCalculation.concat(" ", item, " ");
+          }
+          setSaveNumbers("");
+          setSmallCalculation(saveStr);
+        }
+      }
     }
     if (item === "%") {
       setResult(eval(`${result}/100`));
@@ -75,27 +96,6 @@ export default function Calculator() {
       } else {
         setSmallCalculation("");
         setResult("0");
-      }
-    } else {
-      if (!isNaN(parseInt(item)) || item === ",") {
-        saveStr = saveNumbers.concat("", item);
-        setResult(saveStr);
-        setSaveNumbers(saveStr);
-        setSmallCalculation(smallCalculation.concat("", item));
-      } else {
-        if (item !== "AC" && item !== "C") {
-          if (isNaN(parseInt(lastChar))) {
-            const tmp = smallCalculation;
-            saveStr = tmp.replace(lastChar, item);
-            if (isNaN(parseInt(firstChar))) {
-              saveStr = smallCalculation.slice(0, 1) + "0 " + item + " ";
-            }
-          } else {
-            saveStr = smallCalculation.concat(" ", item, " ");
-          }
-          setSaveNumbers("");
-          setSmallCalculation(saveStr);
-        }
       }
     }
   };
