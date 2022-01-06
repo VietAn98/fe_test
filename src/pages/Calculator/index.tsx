@@ -12,7 +12,7 @@ const TITLES = [
   "7",
   "8",
   "9",
-  ".",
+  ",",
   "=",
   "+",
   "-",
@@ -47,28 +47,49 @@ export default function Calculator() {
 
   const handleClickItem = (item: string) => {
     let saveStr = "";
+    const lastChar = smallCalculation.replaceAll(" ", "").substring(smallCalculation.replaceAll(" ", "").length - 1);
+    const firstChar = smallCalculation.substring(0);
     if (item === "C") {
       setResult("0");
       setSmallCalculation("");
       setSaveNumbers("");
+    }
+    if (item === "%") {
+      setResult(eval(`${result}/100`));
+      setSmallCalculation("");
+    }
+    if (item === "+/-") {
+      setResult(eval(`${result}*-1`));
+      setSmallCalculation("");
+    }
+
+    if (item === "=" || item === "enter") {
+      if (!isNaN(parseInt(lastChar))) {
+        let tmpArr = savedLocalstorage;
+        const finalResult = (Math.round(eval(smallCalculation.replaceAll(",", ".")) * 100) / 100).toString();
+        tmpArr?.push(`${smallCalculation} = ${finalResult}`);
+
+        localStorage.setItem("history", JSON.stringify(tmpArr));
+        setResult(finalResult);
+        setSmallCalculation("");
+      } else {
+        setSmallCalculation("");
+        setResult("0");
+      }
     } else {
-      if (!isNaN(parseInt(item))) {
+      if (!isNaN(parseInt(item)) || item === ",") {
         saveStr = saveNumbers.concat("", item);
         setResult(saveStr);
         setSaveNumbers(saveStr);
         setSmallCalculation(smallCalculation.concat("", item));
       } else {
         if (item !== "AC" && item !== "C") {
-          if (
-            isNaN(
-              parseInt(smallCalculation.replaceAll(" ", "").substring(smallCalculation.replaceAll(" ", "").length - 1))
-            )
-          ) {
+          if (isNaN(parseInt(lastChar))) {
             const tmp = smallCalculation;
-            saveStr = tmp.replace(
-              smallCalculation.replaceAll(" ", "").substring(smallCalculation.replaceAll(" ", "").length - 1),
-              item
-            );
+            saveStr = tmp.replace(lastChar, item);
+            if (isNaN(parseInt(firstChar))) {
+              saveStr = smallCalculation.slice(0, 1) + "0 " + item + " ";
+            }
           } else {
             saveStr = smallCalculation.concat(" ", item, " ");
           }
@@ -76,19 +97,6 @@ export default function Calculator() {
           setSmallCalculation(saveStr);
         }
       }
-    }
-
-    if (item === "%") {
-      setResult(eval(`${result}/100`));
-      setSmallCalculation("");
-    }
-    if (item === "=" || item === "enter") {
-      let tmpArr = savedLocalstorage;
-      tmpArr?.push(`${smallCalculation} = ${eval(smallCalculation)}`);
-
-      localStorage.setItem("history", JSON.stringify(tmpArr));
-      setResult(eval(smallCalculation));
-      setSmallCalculation("");
     }
   };
 
