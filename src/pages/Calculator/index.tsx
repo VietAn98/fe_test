@@ -65,7 +65,7 @@ export default function Calculator() {
             const tmp = smallCalculation;
             saveStr = tmp.replace(lastChar, item);
             if (isNaN(parseInt(firstChar))) {
-              saveStr = smallCalculation.slice(0, 1) + "0 " + item + " ";
+              saveStr = smallCalculation.slice(0, 1) + result + " " + item + " ";
             }
           } else {
             saveStr = smallCalculation.concat(" ", item, " ");
